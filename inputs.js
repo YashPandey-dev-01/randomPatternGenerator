@@ -6,7 +6,7 @@ const screen = {
   fps: 60,
 }
 
-const minDepth = 0;
+const minDepth = 2;
 const maxDepth = 20;
 
 const depth = {
@@ -14,7 +14,7 @@ const depth = {
   current: 0
 }
 
-const gap = 0;
+const gap = 2;
 
 module.exports = {
   screen,

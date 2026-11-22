@@ -2,28 +2,37 @@ const r = require("raylib");
 const { screen, depth, gap, minDepth, maxDepth } = require("./inputs.js");
 const { getRandomNumber, getRandomAxis, getRandomColor } = require("./random.js");
 
+const getVcut = function (targetRect) {
+  targetRect.width /= 2;
+
+  const newRect = {
+    x: targetRect.x + targetRect.width,
+    y: targetRect.y,
+    width: targetRect.width,
+    height: targetRect.height
+  }
+
+  return newRect;
+}
+
+const getHcut = function (targetRect) {
+  targetRect.height /= 2;
+
+  const newRect = {
+    x: targetRect.x,
+    y: targetRect.y + targetRect.height,
+    width: targetRect.width,
+    height: targetRect.height
+  }
+
+  return newRect;
+}
+
 const bisectRectangle = function (coords, targetRect) {
   const randomAxis = getRandomAxis();
+  const newRect = randomAxis === 'x' ? getHcut(targetRect) : getVcut(targetRect);
 
-  if (randomAxis === 'x') {
-    targetRect.height /= 2;
-
-    const x = targetRect.x;
-    const y = targetRect.y + targetRect.height;
-    const width = targetRect.width;
-    const height = targetRect.height;
-
-    coords.push({ x, y, width, height });
-  } else {
-    targetRect.width /= 2;
-
-    const x = targetRect.x + targetRect.width;
-    const y = targetRect.y;
-    const width = targetRect.width;
-    const height = targetRect.height;
-
-    coords.push({ x, y, width, height });
-  }
+  coords.push(newRect);
 }
 
 const generateMoreCoordinates = function (coords) {

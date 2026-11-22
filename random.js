@@ -1,14 +1,11 @@
 const getRandomNumber = function (lowerBound, upperBound) {
-  const randomNumber = Math.random() * (upperBound - lowerBound);
-  const randomNumberInRange = lowerBound + randomNumber;
+  const randomNumberInRange = lowerBound + Math.random() * (upperBound - lowerBound);
 
   return Math.round(randomNumberInRange);
 }
 
 const getRandomAxis = function () {
-  const randomNumber = getRandomNumber(0, 1);
-
-  return randomNumber === 0 ? 'x' : 'y';
+  return getRandomNumber(0, 1) === 0 ? 'x' : 'y';
 }
 
 const getRandomColor = function () {
