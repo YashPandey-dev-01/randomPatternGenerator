@@ -19,5 +19,7 @@ const gap = 0;
 module.exports = {
   screen,
   depth,
-  gap
+  gap,
+  minDepth,
+  maxDepth
 }

@@ -1,5 +1,5 @@
 const r = require("raylib");
-const { screen, depth, gap } = require("./inputs.js");
+const { screen, depth, gap, minDepth, maxDepth } = require("./inputs.js");
 const { getRandomNumber, getRandomAxis, getRandomColor } = require("./random.js");
 
 const bisectRectangle = function (coords, targetRect) {
@@ -88,6 +88,7 @@ const setup = function () {
 const update = function (rects) {
   if (r.IsKeyPressed(r.KEY_R)) {
     depth.current = 0;
+    depth.target = getRandomNumber(minDepth, maxDepth);
     rects = generatePattern();
   }
 
@@ -129,4 +130,3 @@ const main = function () {
 }
 
 main();
-
